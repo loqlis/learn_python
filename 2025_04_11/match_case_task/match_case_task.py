@@ -59,7 +59,7 @@
 #         return LOGIN_ERRORS[login_code]
 # ```
 
-from check_utilities import register_user
+from check_utilities import register_user, hash_password
 from check_utilities import database
 
 
@@ -67,6 +67,7 @@ def main():
     user_login = input('Введите логин: ')
     user_password = input('Введите пароль: ')
     register_user(user_login, user_password)
+    database[user_login] = hash_password(user_password)
 
 
 if __name__ == "__main__":

@@ -1,13 +1,13 @@
+import hashlib
+
 from .validate_login import validate_login
 from .validate_password import validate_password
-from .database import database
 
 
 def register_user(login: str, password: str) -> None:
     match validate_login(login):
         case 'short':
             print('Логин слишком короткий.')
-            return
         case 'starts':
             print('Логин не может начинаться с цифры.')
         case 'authorized':
@@ -30,4 +30,9 @@ def register_user(login: str, password: str) -> None:
         case _:
             print('Пароль корректный')
 
-    database[login] = hash(password)
+
+def hash_password(password: str) -> str:
+    hashed_password = hashlib.sha256(password.encode())
+    hashed_password = hashed_password.hexdigest()
+
+    return hashed_password

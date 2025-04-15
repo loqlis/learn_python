@@ -40,4 +40,4 @@ def validate_password(password: str) -> str | None:
     elif password in load_weak_passwords('weak_passwords.txt'):
         return 'weak'
     else:
-        check_symbols(password)
+        return check_symbols(password)
