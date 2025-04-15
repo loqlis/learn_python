@@ -19,8 +19,8 @@
 # }
 
 from utilities import (
-    sort_time,
-    group_user,
+    sort_logs_by_time,
+    group_users_by_logs,
     count_logins
 )
 
@@ -35,8 +35,8 @@ logs = [
 
 def main():
     print(
-        f"Сортировка действий по времени: {sort_time(logs)}\n"
-        f"Группировка действий по пользователю: {group_user(logs)}\n"
+        f"Сортировка действий по времени: {sort_logs_by_time(logs)}\n"
+        f"Группировка действий по пользователю: {group_users_by_logs(logs)}\n"
         f"Количество входов каждого пользователя: {count_logins(logs)}"
     )
 

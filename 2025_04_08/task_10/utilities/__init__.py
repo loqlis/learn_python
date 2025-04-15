@@ -1,3 +1,3 @@
-from .sort_time import sort_time
-from .group_user import group_user
+from .sort_logs_by_time import sort_logs_by_time
+from .group_users_by_logs import group_users_by_logs
 from .count_logins import count_logins

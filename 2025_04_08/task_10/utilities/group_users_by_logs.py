@@ -1,4 +1,4 @@
-def group_user(logs_data: list[dict]) -> list:
+def group_users_by_logs(logs_data: list[dict]) -> list:
     grouped_user = {}
     sorted_logs = sorted(logs_data, key=lambda log: log['time'])
     for user in sorted_logs:
