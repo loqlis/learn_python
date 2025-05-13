@@ -1,0 +1,51 @@
+# Контекст: Анализ логов веб-сервера.
+#
+# Задача:
+# Создай класс LogParser, который:
+# - принимает путь к файлу лога,
+# - умеет парсить строки формата:
+# ```shell
+# 2025-05-11 10:22:33, INFO, User logged in: user123
+# 2025-05-11 10:23:10, ERROR, Failed login attempt: user321
+# 2025-05-11 10:24:05, DEBUG, Checking permission for user: user123
+# 2025-05-11 10:25:14, INFO, File uploaded: report.pdf by user456
+# 2025-05-11 10:26:02, WARNING, Disk usage exceeded 85% on server-01
+# 2025-05-11 10:27:43, INFO, Email sent to: admin@example.com
+# 2025-05-11 10:28:15, ERROR, Database connection timeout
+# 2025-05-11 10:29:59, DEBUG, Reconnecting to database...
+# 2025-05-11 10:30:45, INFO, User logged out: user123
+# 2025-05-11 10:32:01, INFO, New user registered: user999
+# 2025-05-11 10:33:33, CRITICAL, System failure: memory leak detected
+# 2025-05-11 10:35:12, INFO, Daily backup completed successfully
+# 2025-05-11 10:36:47, DEBUG, Validating backup integrity
+# 2025-05-11 10:37:18, INFO, Password changed for user: user321
+# 2025-05-11 10:38:29, ERROR, Invalid API key used by client: 192.168.1.10
+# 2025-05-11 10:39:55, INFO, Scheduled maintenance started
+# 2025-05-11 10:40:26, INFO, Scheduled maintenance completed
+# 2025-05-11 10:41:11, DEBUG, Cache cleared for user: user456
+# 2025-05-11 10:42:59, WARNING, High CPU usage detected on server-02
+# 2025-05-11 10:44:03, INFO, User logged in: admin
+# 2025-05-11 10:45:50, ERROR, Access denied: insufficient permissions for user789
+# 2025-05-11 10:47:24, INFO, Session expired for user: user123
+# 2025-05-11 10:48:13, DEBUG, Session token refreshed for user: user456
+# 2025-05-11 10:49:37, INFO, New message posted in channel: support
+# 2025-05-11 10:50:21, CRITICAL, Kernel panic on server-03
+# ```
+#
+# Методы:
+# - get_all_entries() — возвращает список словарей с полями timestamp, level, message,
+# - filter_by_level(level) — возвращает только нужные записи (INFO, ERROR, DEBUG и т.п.),
+# - count_by_level() — возвращает словарь с количеством записей по каждому уровню
+
+from class_LogParser import LogParser
+
+
+def main():
+    log_pars_ex = LogParser('data.txt')
+    print(f"Все логи: {log_pars_ex.get_all_entries()}\n"
+          f"Логи по уровню: {log_pars_ex.filter_by_level(input('Введите уровень: ').upper())}\n"
+          f"Количество логов по каждому уровню: {log_pars_ex.count_by_level()}")
+
+
+if __name__ == "__main__":
+    main()
