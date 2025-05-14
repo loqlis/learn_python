@@ -2,11 +2,17 @@ import csv
 
 
 class ReportGenerator:
-    def __init__(self, data: list[dict], fields):
+    def __init__(self, data: list[dict], fields: str):
         self.data = data
         self.fields = fields
 
-    def export_to(self, file_name):
+    def export_to(self, file_name: str) -> None:
+        """
+        Записывает в csv файл данные
+        в формате: список словарей.
+        :param file_name:
+        :return:
+        """
         with open(file_name, 'w') as file:
             writer = csv.writer(file)
             if self.fields == 'all':

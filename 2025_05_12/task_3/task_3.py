@@ -10,7 +10,7 @@
 #
 # Добавь опциональный параметр fields, чтобы указать, какие колонки сохранять
 
-from class_ReportGenerator import ReportGenerator
+from report_generator import ReportGenerator
 
 products = [
     {'product': 'Яблоко', 'price': 1.50, 'quantity': 100},

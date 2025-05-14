@@ -37,13 +37,13 @@
 # - filter_by_level(level) — возвращает только нужные записи (INFO, ERROR, DEBUG и т.п.),
 # - count_by_level() — возвращает словарь с количеством записей по каждому уровню
 
-from class_LogParser import LogParser
+from log_parser import LogParser
 
 
 def main():
     log_pars_ex = LogParser('data.txt')
     print(f"Все логи: {log_pars_ex.get_all_entries()}\n"
-          f"Логи по уровню: {log_pars_ex.filter_by_level(input('Введите уровень: ').upper())}\n"
+          f"Логи по уровню: {log_pars_ex.filter_by_level(input('Введите уровень лога: ').upper())}\n"
           f"Количество логов по каждому уровню: {log_pars_ex.count_by_level()}")
 
 

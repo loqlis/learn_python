@@ -11,7 +11,7 @@
 # - total_amount() — возвращает общую сумму,
 # - mark_paid() — меняет статус на paid, но только если есть товары
 
-from class_Invoice import Invoice
+from invoice import Invoice
 
 products = [
     {'product': 'Яблоко', 'price': 1.50, 'quantity': 100},
