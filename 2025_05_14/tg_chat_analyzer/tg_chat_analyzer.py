@@ -98,13 +98,8 @@ from analyzer import Analyzer
 
 
 def main():
-    chat_analyzer = Analyzer('zpz.json')
-    print(
-        f"Количество сообщений по авторам: {chat_analyzer.count_messages_by_person()}\n"
-        f"Распределение сообщений по дням недели: {chat_analyzer.sort_messages_by_weekdays()}\n"
-        f"Распределение сообщений по врмени суток: {chat_analyzer.sort_messages_by_time()}\n"
-        f"Количество слов и ссылок в чате: {chat_analyzer.count_words_and_links()}"
-    )
+    chat_analyzer = Analyzer('abortish.json')
+    chat_analyzer.get_full_result()
 
 
 if __name__ == "__main__":

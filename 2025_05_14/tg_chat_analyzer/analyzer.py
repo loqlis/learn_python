@@ -1,4 +1,7 @@
 import json, datetime
+from json import JSONDecodeError
+
+from sys import exit
 
 
 class Analyzer:
@@ -7,9 +10,20 @@ class Analyzer:
         self.loaded_chat = self.read_json_chat()
         self.chat = self._del_extra()
 
-    def read_json_chat(self) -> list:
-        with open(self.chat_path) as chat:
-            return json.load(chat)
+    def read_json_chat(self) -> list | None:
+        """
+        Получение данных из файла.
+        :return:
+        """
+        try:
+            with open(self.chat_path) as chat:
+                return json.load(chat)
+        except FileNotFoundError:
+            print("Файл не найден.")
+            exit()
+        except JSONDecodeError:
+            print('Файл пуст.')
+            exit()
 
     def _del_extra(self) -> list:
         """
@@ -68,20 +82,21 @@ class Analyzer:
         for day in dates:
             day = [*map(int, day)]
             date = datetime.datetime(day[0], day[1], day[2])
-            if date.weekday() == 0:
-                days_dict['Monday'] += 1
-            elif date.weekday() == 1:
-                days_dict['Tuesday'] += 1
-            elif date.weekday() == 2:
-                days_dict['Wednesday'] += 1
-            elif date.weekday() == 3:
-                days_dict['Thursday'] += 1
-            elif date.weekday() == 4:
-                days_dict['Friday'] += 1
-            elif date.weekday() == 5:
-                days_dict['Saturday'] += 1
-            elif date.weekday() == 6:
-                days_dict['Sunday'] += 1
+            match date.weekday():
+                case 0:
+                    days_dict['Monday'] += 1
+                case 1:
+                    days_dict['Tuesday'] += 1
+                case 2:
+                    days_dict['Wednesday'] += 1
+                case 3:
+                    days_dict['Thursday'] += 1
+                case 4:
+                    days_dict['Friday'] += 1
+                case 5:
+                    days_dict['Saturday'] += 1
+                case 6:
+                    days_dict['Sunday'] += 1
 
         return days_dict
 
@@ -137,3 +152,36 @@ class Analyzer:
         counter = {'Words': len(words), 'Links': len(links)}
 
         return counter
+
+    def get_full_result(self):
+        """
+        Получение полной статистики
+        с красивым выводом.
+        :return:
+        """
+        result_people_dict = self.count_messages_by_person()
+        result_people = f"Статистика по авторам\n"
+        for key, value in result_people_dict.items():
+            result_people += f"{key}: {value}\n"
+
+        days_dict = self.sort_messages_by_weekdays()
+        days_result = f"Распределение по дням:\n"
+        for key, value in days_dict.items():
+            days_result += f"{key}: {value}\n"
+
+        time_dict = self.sort_messages_by_time()
+        time_result = f"Распределение по времени:\n"
+        for key, value in time_dict.items():
+            time_result += f"{key}: {value}\n"
+
+        counter = self.count_words_and_links()
+        words_links_result = f"Слова и ссылки:\n"
+        for key, value in counter.items():
+            words_links_result += f"{key}: {value}\n"
+
+        print(
+            f"{result_people}\n"
+            f"{days_result}\n"
+            f"{time_result}\n"
+            f"{words_links_result}"
+        )
