@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Сообщения</title>
+
+  <link
+    href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css'
+    rel='stylesheet'
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+  <!-- Подключи свой style.css -->
+</head>
+<body class="bg-light">
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <div class="card shadow-sm">
+          <div class="card-body">
+
+            <h1>Гостевая книга 📖</h1>
+
+            <form id="form" class='mb-4'>
+            <!-- Вставь тег формы с id="form" и классом "mb-4" -->
+
+              <!-- Поле ввода имени -->
+              <div class="mb-3">
+                  <label for="name" class="form-label">Ваше имя</label>
+                  <input id="name" placeholder="Введите имя" class="form-control" required>
+                <!-- Тег input для имени с id="name", placeholder, required и классом form-control -->
+              </div>
+
+              <!-- Поле ввода сообщения -->
+              <div class="mb-3">
+                  <label for="message" class="form-label">Ваше сообщение</label>
+                  <input id="message" placeholder="Введите сообщение" class="form-control" required>
+              </div>
+
+              <!-- Кнопка отправки -->
+              <div class="d-grid">
+                  <button type="submit" class="btn btn-primary">Отправить</button>
+              </div>
+
+                 </form>
+
+              <h2 class="h4">Сообщения</h2>
+              <ul id="messages" class="list-group mt-3"></ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <!-- Подключение JavaScript -->
+  <!-- Впиши тег script для подключения script.js -->
+</body>
+</html>
