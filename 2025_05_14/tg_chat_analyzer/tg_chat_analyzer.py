@@ -94,11 +94,15 @@
 # * CLI-интерфейс с `argparse` или `typer`
 # * Поддержка нескольких чатов
 
+import click
+
 from analyzer import Analyzer
 
 
-def main():
-    chat_analyzer = Analyzer('abortish.json')
+@click.command()
+@click.argument('file')
+def main(file):
+    chat_analyzer = Analyzer(file)
     chat_analyzer.get_full_result()
 
 
